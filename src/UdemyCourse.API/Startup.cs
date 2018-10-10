@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using UdemyCourse.API.Data;
+using UdemyCourse.API.Services.Auth;
 
 namespace UdemyCourse.API
 {
@@ -41,6 +42,8 @@ namespace UdemyCourse.API
                     ValidateIssuer = false,
                     ValidateAudience = false
                 });
+            // Replace this with Autofac
+            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddDbContext<ApplicationDbContext>(o =>
                 o.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }
